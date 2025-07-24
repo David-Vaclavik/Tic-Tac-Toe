@@ -1,0 +1,37 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: calc(1em + 0.5rem); /*? experimental */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    /* font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+    background-color: oklch(20% 0 0);
+    color: oklch(95% 0 0);
+}
+
+p {
+    max-width: 75ch;
+    /* Important */
+}
+
+input, button, textarea, select, dialog {
+  font: inherit;
+}
+
+h1 {
+    font-size: 72px;
+    letter-spacing: 4px;
+}
+
+/* ================================== Reset ends here =================================== */
+
+
