@@ -1,5 +1,5 @@
 *, *::before, *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 * {
@@ -33,5 +33,44 @@ h1 {
 }
 
 /* ================================== Reset ends here =================================== */
+
+header {
+  padding: 50px;
+  background-color: rgb(11, 85, 85);
+}
+
+main {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  align-self: stretch;
+  background-color: brown;
+}
+
+.gameboard-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  /* justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center; */
+
+  background-color: blueviolet;
+}
+
+.cell {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 100px;
+  aspect-ratio: 1/1;
+
+  font-size: 72px;
+  font-weight: 700;
+
+  background-color: rgb(73, 124, 23);
+}
 
 
