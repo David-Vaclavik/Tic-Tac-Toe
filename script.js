@@ -47,6 +47,29 @@ function gameController(
     let round = 0;
     let board = gameboard();
 
+    const cell = document.querySelectorAll('.cell')
+    const display = document.querySelector('[data-display]')
+
+
+    const resetBoard = () => {
+        round = 0;
+        activePlayer = 0;
+        board = gameboard();
+
+        cell.forEach(c => {
+            c.textContent = '';
+            c.disabled = false;
+        });
+
+        display.textContent = `Player ${players[activePlayer].marker}'s turn`;
+    }
+
+    const disableCells = () => {
+        cell.forEach(c => {
+            c.disabled = true;
+        });
+    }
+
     const checkWinner = () => {
         round++;
         // console.log(round);
@@ -58,6 +81,9 @@ function gameController(
                 board[row].every(cell => cell === board[row][0])
             ) {
                 console.log("winner winner chicken dinner ROWS");
+                display.textContent = `Player ${board[row][0]} has won!`;
+                disableCells();
+                // resetBoard();
                 return board[row][0]; // Return 'X' or 'O'
             }
         }
@@ -73,6 +99,9 @@ function gameController(
                 first === board[2][column]
             ) {
                 console.log("winner winner chicken dinner COLUMNS: " + board[0][column]);
+                display.textContent = `Player ${first} has won!`;
+                disableCells();
+                // resetBoard();
                 return board[0][column]; // Return 'X' or 'O'
             }
         }
@@ -84,6 +113,9 @@ function gameController(
             board[1][1] === board[2][2]
         ) {
             console.log("winner winner chicken dinner main DIAGONAL: " + board[0][0]);
+            display.textContent = `Player ${board[0][0]} has won!`;
+            disableCells();
+            // resetBoard();
             return board[0][0]; // Return 'X' or 'O'
         }
         if (
@@ -92,20 +124,20 @@ function gameController(
             board[1][1] === board[2][0]
         ) {
             console.log("winner winner chicken dinner anti-main DIAGONAL: " + board[0][2]);
+            display.textContent = `Player ${board[0][2]} has won!`;
+            disableCells();
+            // resetBoard();
             return board[0][2]; // Return 'X' or 'O'
         }
 
         if (round === 9) {
             console.log("It's a TIE!!!!!");
-            round = 0;
-            turn = 1; // set turn to 1 so next play on new board will also be player 1
-
-            //: Reset board
-            board = gameboard();
+            display.textContent = "It's a TIE!!!!!";
+            // resetBoard();
         }
     }
 
-    let turn = 0;
+    let activePlayer = 0;
 
     const makeMark = (row, column) => {
         if (board[row][column] === 'X' || board[row][column] === 'O') {
@@ -113,19 +145,51 @@ function gameController(
             return;
         }
 
-        console.log(`${players[turn].name} plays:`);
-        board[row][column] = players[turn].marker;
+        console.log(`${players[activePlayer].name} plays:`);
+        board[row][column] = players[activePlayer].marker;
 
         console.log(board);
 
+        activePlayer > 0 ? activePlayer-- : activePlayer++;
+
+        display.textContent = `Player ${players[activePlayer].marker}'s turn`;
+
         checkWinner();
 
-        turn > 0 ? turn-- : turn++;
     }
 
-    return {players, makeMark};
+    display.textContent = `Player ${players[activePlayer].marker}'s turn`;
+    // activePlayer === 0 ? 
+    // display.textContent = `Player ${players[activePlayer].marker}'s turn` :
+    // activePlayer++;
 
+    // Fills cell
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('cell') && e.target.textContent === '') {
+            e.target.textContent = players[activePlayer].marker
+
+            const row = Number(e.target.dataset.row);
+            const col = Number(e.target.dataset.col);
+
+            makeMark(row, col);
+        }
+    });
+
+    return {players, makeMark, resetBoard};
 }
+
+function initEventListeners() {
+    // console.log("initEventListeners");
+    const resetBtn = document.querySelector("[data-reset]")
+    const cell = document.querySelectorAll('.cell')
+
+    resetBtn.addEventListener('click', () => {
+        console.log("reset");
+        game.resetBoard();
+    })
+}
+
+initEventListeners();
 
 const game = gameController();
 
@@ -160,29 +224,22 @@ game.makeMark(2, 2);
 // game.makeMark(2, 0);
 
 // TIE
-game.makeMark(0, 0);
-game.makeMark(0, 2);
-game.makeMark(0, 1);
+// game.makeMark(0, 0);
+// game.makeMark(0, 2);
+// game.makeMark(0, 1);
 
-game.makeMark(1, 1);
-game.makeMark(2, 2);
-game.makeMark(1, 0);
+// game.makeMark(1, 1);
+// game.makeMark(2, 2);
+// game.makeMark(1, 0);
 
-game.makeMark(1, 2);
-game.makeMark(2, 1);
-game.makeMark(2, 0);
-
-
+// game.makeMark(1, 2);
+// game.makeMark(2, 1);
+// game.makeMark(2, 0);
 
 
-/*
-function arraysEqual(a, b) {
-  return a.length === b.length && a.every((val, i) => val === b[i]);
-}
 
-console.log(arraysEqual([1, 1, 1], [1, 1, 1])); // true
-console.log(arraysEqual([1, 2, 3], [1, 2, 4])); // false
-*/
+
+
 
 
 

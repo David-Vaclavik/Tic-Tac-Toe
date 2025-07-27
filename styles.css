@@ -16,6 +16,8 @@ body {
     /* font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
     background-color: oklch(20% 0 0);
     color: oklch(95% 0 0);
+
+    min-height: 100vh;
 }
 
 p {
@@ -24,7 +26,7 @@ p {
 }
 
 input, button, textarea, select, dialog {
-  font: inherit;
+    font: inherit;
 }
 
 h1 {
@@ -35,42 +37,124 @@ h1 {
 /* ================================== Reset ends here =================================== */
 
 header {
-  padding: 50px;
-  background-color: rgb(11, 85, 85);
+  padding: 30px;
+  /* background-color: rgb(11, 85, 85); */
+}
+
+/* body {
+    background-color: aqua; 
+} */
+
+.display {
+  align-self: center;
+  margin: 20px;
+  font-size: 48px;
+  /* background-color: brown; */
+}
+
+.controls button {
+    width: 180px;
+    height: 60px;
+    margin: 20px;
+    border-style: none;
+    border-radius: 500px;
+    font-size: 28px;
+    font-weight: 600;
+    color: inherit;
+    background-color: oklch(50% 0.11 215);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px oklch(0% 0 0 / 0.2);
+}
+
+.controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px oklch(0% 0 0 / 0.3);
+    background-color: oklch(55% 0.14 215);
+}
+
+.controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px oklch(0% 0 0 / 0.2);
 }
 
 main {
   display: flex;
-  flex: auto;
-  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
   align-self: stretch;
-  background-color: brown;
+  /* background-color: rgb(122, 32, 32); */
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  /* background-color: rgb(29, 104, 6); */
 }
 
 .gameboard-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
+  /* grid-template-rows: 100px 100px 100px; */
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
+  align-self: center;
   /* justify-content: center;
   align-content: center;
   justify-items: center;
   align-items: center; */
 
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
 
 .cell {
-  display: grid;
+  /* display: grid; */
   justify-content: center;
   align-content: center;
-  width: 100px;
+  width: 150px;
   aspect-ratio: 1/1;
 
-  font-size: 72px;
+  font-size: 120px;
   font-weight: 700;
+  color: inherit;
 
-  background-color: rgb(73, 124, 23);
+  border-style: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.2);
+
+  background-color: oklch(35% 0 0);
 }
+
+.cell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px oklch(0% 0 0 / 0.3);
+    background-color: oklch(55% 0.14 215);
+}
+
+.cell:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px oklch(0% 0 0 / 0.2);
+}
+
+
+/* .controls button {
+    width: 180px;
+    height: 60px;
+    margin: 20px;
+    border-style: none;
+    border-radius: 500px;
+    font-size: 28px;
+    font-weight: 600;
+    color: inherit;
+    background-color: oklch(50% 0.11 215);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px oklch(0% 0 0 / 0.2);
+}*/
+
 
 
